@@ -18,7 +18,8 @@ function question(){
  else if(t===3){
   let denoms=stage===0?[2,3,4,5,6,8]:[2,3,4,5,6,8,10];
   b=denoms[r(0,denoms.length-1)];d=stage===0?b:denoms[r(0,denoms.length-1)];a=r(1,b-1);c=r(1,d-1);
-  if(r(0,4)===0){d=b;c=a}
+  // Exact dezelfde breuk mag niet tweemaal verschijnen; gelijkwaardige schrijfwijzen wel.
+  while(a===c && b===d){c=r(1,d-1)}
   let smaller=r(0,1)===0;q=smaller?'Welke breuk is kleiner?':'Welke breuk is groter?';
   let left=`${a}/${b}`,right=`${c}/${d}`;
   ans=a*d===c*b?'Even groot':(smaller?(a*d<c*b?left:right):(a*d>c*b?left:right));
